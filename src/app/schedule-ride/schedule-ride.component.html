@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>Schedule a Ride</h2>
+  <form [formGroup]="scheduleRideForm" (ngSubmit)="onSubmit($event)">
+    <input type="date" formControlName="date" required />
+    <div *ngIf="showErrors('date')">
+      <p style="color: red; margin-top: 0">Date is required!</p>
+    </div>
+    <input type="time" formControlName="time" required />
+    <div *ngIf="showErrors('time')">
+      <p style="color: red; margin-top: 0">Time is required!</p>
+    </div>
+    <input
+      type="text"
+      formControlName="destination"
+      placeholder="Destination"
+      required
+    />
+    <div *ngIf="showErrors('destination')">
+      <p style="color: red; margin-top: 0">Destination is required!</p>
+    </div>
+    <select formControlName="driver" required>
+      <option value="">Select a driver</option>
+      <option value="driver1">Driver 1</option>
+      <option value="driver2">Driver 2</option>
+    </select>
+    <div *ngIf="showErrors('driver')">
+      <p style="color: red; margin-top: 0">Please select Driver!</p>
+    </div>
+    <button type="submit">Schedule</button>
+  </form>
+</div>
