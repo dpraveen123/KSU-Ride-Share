@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const Rider = require("./models/rider");
+const RiderPayment = require("./models/riderPayment");
 mongoose
   .connect("mongodb://localhost:27017/IT6203")
   .then(() => {
@@ -27,10 +27,10 @@ app.use((req, res, next) => {
 
 //in the app.get() method below we add a path for the students API
 //by adding /students, we tell the server that this method will be called every time http://localhost:8000/students is requested.
-app.get("/riders", (req, res, next) => {
+app.get("/ridersPayment", (req, res, next) => {
   //we will add an array named students to pretend that we received this data from the database
   //call mongoose method find (MongoDB db.Students.find())
-  Rider.find()
+  RiderPayment.find()
     //if data is returned, send data as a response
     .then((data) => res.status(200).json(data))
     //if error, send internal server error
@@ -46,9 +46,9 @@ app.get("/riders", (req, res, next) => {
   // res.json(riders);
 });
 
-app.post("/riders", (req, res, next) => {
+app.post("/ridersPayment", (req, res, next) => {
   // create a new student variable and save request’s fields 
-const rider = new Rider({
+const riderPayment = new RiderPayment({
     cardNumber: req.body.cardNumber,
     expireDate: req.body.expireDate,
     cvv: req.body.cvv,
@@ -56,11 +56,17 @@ const rider = new Rider({
     zip: req.body.zip
 });
 //send the document to the database 
-rider.save()
+riderPayment.save()
     //in case of success
     .then(() => { console.log('Success');})
     //if error
     .catch(err => {console.log('Error:' + err);});
+});
+app.delete("/ridersPayment/:id", (req, res, next) => {
+  RiderPayment.deleteOne({ _id: req.params.id }).then(result => {
+      console.log(result);
+      res.status(200).json("Deleted!");
+  });
 });
 
 //to use this middleware in other parts of the application

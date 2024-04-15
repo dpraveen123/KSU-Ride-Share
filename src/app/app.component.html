@@ -178,13 +178,16 @@
 </style>
 
 <main class="main">
+  <router-outlet></router-outlet>
+  
   <div class="content">
     <div class="left-side">
       <app-payment-module></app-payment-module>
+     
       <div>
-        <ul *ngFor="let rider of riders; let i = index">
+        <ul *ngFor="let rider of ridersPayment; let i = index">
           <li>
-            {{ rider.id }}: {{ rider.firstName }} {{ rider.lastName }} (index
+            {{ rider.id }}: {{ rider.cardNumber }} {{ rider.zip }} (index
             {{ i }})
           </li>
         </ul>
@@ -200,5 +203,3 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<router-outlet />

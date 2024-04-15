@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 //define a schema/ blueprint NOTE: id is not a part of the schema 
-const riderSchema = new mongoose.Schema({
+const riderPaymentSchema = new mongoose.Schema({
     cardNumber:  { type: Number, required: true},
     expireDate:  { type: String, required: true},
     cvv:  { type: Number, required: true},
@@ -13,5 +13,5 @@ const riderSchema = new mongoose.Schema({
 //use the blueprint to create the model 
 //Parameters: (model_name, schema_to_use, collection_name)
 //module.exports is used to allow external access to the model  
-module.exports = mongoose.model('Rider', riderSchema,'RideShare');
+module.exports = mongoose.model('RiderPayment', riderPaymentSchema,'RideShare');
 //note capital S in the collection name

@@ -10,24 +10,11 @@ import {PaymentService} from '../payment.service'
   templateUrl: './payment-module.component.html',
   styleUrl: './payment-module.component.css'
 })
-export class PaymentModuleComponent {
+export class PaymentModuleComponent implements OnInit {
   paymentForm: FormGroup = new FormGroup({});
-  // cardNumber = new FormControl('');
-  // constructor(private fb: FormBuilder) {
-  //   this.paymentForm = this.fb.group({
-  //     cardNumber: ['', [Validators.required, Validators.pattern('^[0-9]{12}$')]],
-  //     expireDate: ['', Validators.required],
-  //     cvv: ['', [Validators.required, Validators.pattern('^[0-9]{3}$')]],
-  //     country: ['', Validators.required],
-  //     zip: ['', Validators.required]
-  //     // address: this.fb.group({
-  //     //   // street: [''],
-  //     //   // city: [''],
-  //     //   // state: [''],
-        
-  //     // })
-  //   });
-  // }
+  showProfileCard: boolean = false;
+  userPaymentDetails: any;
+  
 
   constructor(private fb: FormBuilder, private paymentService: PaymentService) {}
 
@@ -101,12 +88,38 @@ export class PaymentModuleComponent {
       
       let zip=this.paymentForm.get('zip')?.value??""
 
-      this.paymentService.addRiders(cardNumber, expireDate,cvv,country,zip )
+      this.paymentService.addRidersPayment(cardNumber, expireDate,cvv,country,zip )
       // You can perform further actions here, such as sending the form data to a backend server
     } else {
       // Handle form validation errors if needed
       console.log("Form is invalid. Please check for validation errors.",this.paymentForm.value);
     }
   
+  }
+  toggleProfileCard() {
+    this.showProfileCard = !this.showProfileCard;
+    if (this.showProfileCard) {
+      const userId = '661c3801a883f795ecb5f507';
+      // Fetch user payment details when profile card is shown
+      this.paymentService.getRidersPayment().subscribe((paymentDetails: any) => {
+        console.log(paymentDetails,'paymentDetails')
+        const userPaymentDetail = paymentDetails.find((detail:any) => detail._id === userId)
+        if (userPaymentDetail) {
+          this.userPaymentDetails = userPaymentDetail;
+        } else {
+          console.log('User payment detail not found');
+        }
+      });
+    }
+  }
+
+  editPaymentDetails(paymentDetails: any) {
+    // Implement edit functionality here
+  }
+
+  deletePaymentDetails(id: any) {
+    console.log(id,"delete id")
+    this.paymentService.deleteRiderpayment(id)
+    // Implement delete functionality here
   }
 }

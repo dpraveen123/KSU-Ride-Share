@@ -18,20 +18,18 @@ import {HttpClientModule} from '@angular/common/http'
 export class AppComponent implements OnInit {
   title ='Ride-Share App';
   //declare variable to hold response and make it public to be accessible from components.html
-  public riders: any;
+  public ridersPayment: any;
   //initialize the call using StudentService 
   constructor(private _myService: PaymentService) { }
   ngOnInit() {
-      this.getRiders();
+      this.getRidersPayment();
   }
   //method called OnInit
-  getRiders() {
-  this._myService.getRiders().subscribe({
+  getRidersPayment() {
+  this._myService.getRidersPayment().subscribe({
     //read data and assign to public variable students
-    next: (data => { this.riders = data }),
+    next: (data => { this.ridersPayment = data }),
     error: (err => console.error(err)),
     complete: (() => console.log('finished loading'))
-  });
-  }
+  });}
 }
-   
