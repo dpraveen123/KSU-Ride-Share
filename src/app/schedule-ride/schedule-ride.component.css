@@ -14,9 +14,9 @@
   margin-bottom: 1rem;
 }
 
-input,
-select,
-button {
+.form-field input,
+.form-field select,
+.form-field button {
   width: 100%;
   margin-bottom: 1rem;
   padding: 0.5rem;
@@ -25,13 +25,37 @@ button {
   box-sizing: border-box;
 }
 
-button {
+.form-field button {
   background-color: #007bff;
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.form-field button:hover {
   background-color: #0056b3;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+ul li span {
+  flex: 1;
+}
+
+ul li button {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+ul li button:hover {
+  background-color: #c82333;
 }

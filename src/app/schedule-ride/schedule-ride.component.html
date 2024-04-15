@@ -1,31 +1,39 @@
 <div class="container">
-  <h2>Schedule a Ride</h2>
-  <form [formGroup]="scheduleRideForm" (ngSubmit)="onSubmit($event)">
-    <input type="date" formControlName="date" required />
-    <div *ngIf="showErrors('date')">
-      <p style="color: red; margin-top: 0">Date is required!</p>
+  <h2>{{ mode }} Ride</h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="rideForm">
+    <div class="form-field">
+      <input type="date" placeholder="Date" formControlName="date" />
     </div>
-    <input type="time" formControlName="time" required />
-    <div *ngIf="showErrors('time')">
-      <p style="color: red; margin-top: 0">Time is required!</p>
+
+    <div class="form-field">
+      <input type="time" placeholder="Time" formControlName="time" />
     </div>
-    <input
-      type="text"
-      formControlName="destination"
-      placeholder="Destination"
-      required
-    />
-    <div *ngIf="showErrors('destination')">
-      <p style="color: red; margin-top: 0">Destination is required!</p>
+
+    <div class="form-field">
+      <input type="text" placeholder="Destination" formControlName="destination" />
     </div>
-    <select formControlName="driver" required>
-      <option value="">Select a driver</option>
-      <option value="driver1">Driver 1</option>
-      <option value="driver2">Driver 2</option>
-    </select>
-    <div *ngIf="showErrors('driver')">
-      <p style="color: red; margin-top: 0">Please select Driver!</p>
+
+    <div class="form-field">
+      <label>Driver</label>
+      <select formControlName="driver">
+        <option value="driver1">Driver 1</option>
+        <option value="driver2">Driver 2</option>
+      </select>
     </div>
-    <button type="submit">Schedule</button>
+
+    <div class="form-field">
+      <button type="submit">Submit</button>
+    </div>
   </form>
+
+  <ul>
+    <li *ngFor="let ride of rides">
+      <span>{{ ride.date }}</span>
+      <span>{{ ride.time }}</span>
+      <span>{{ ride.destination }}</span>
+      <span>{{ ride.driver }}</span>
+      <button (click)="editRide(ride)">Edit</button>
+      <button (click)="deleteRide(ride)">Delete</button>
+    </li>
+  </ul>
 </div>
