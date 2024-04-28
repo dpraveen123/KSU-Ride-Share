@@ -5,6 +5,7 @@ const app = express();
 
 const mongoose = require("mongoose");
 const Ride = require("./models/ride");
+const Driver = require("./models/driver");
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/KsuRideShare")
