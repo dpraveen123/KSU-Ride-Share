@@ -1,0 +1,58 @@
+.schedule-ride-button {
+  all: unset;
+  height: 40px;
+  width: 150px;
+  background-color: #eab308;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.list-drivers-button {
+  all: unset;
+  height: 40px;
+  width: 150px;
+  background-color: #3b82f6;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.list-drivers-button {
+  all: unset;
+  height: 40px;
+  width: 150px;
+  background-color: #3b82f6;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.rider-registration-button {
+  all: unset;
+  height: 40px;
+  width: 150px;
+  background-color: #22c55e;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 10px;
+  text-align: center;
+}
+.rider-registration-button {
+  all: unset;
+  height: 40px;
+  width: 150px;
+  background-color: rgb(225, 23, 23);
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 10px;
+  text-align: center;
+}

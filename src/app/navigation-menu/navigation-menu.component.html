@@ -1,59 +1,17 @@
-<!-- 
+<div>
+  <button routerLink="/driver/listDrivers" class="list-drivers-button">
+    List Drivers
+  </button>
+  <button routerLink="/driver/addDriver" class="list-drivers-button">
+    Add Drivers
+  </button>
 
-<button
-  mat-button
-  [routerLink]="['/driver/listDrivers']"
-  style="
-    all: unset;
-    background-color: #eab308;
-    height: 40px;
-    width: 150px;
-    color: #ffffff;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
-  "
->
-  List Drivers
-</button>
-<button
-  mat-button
-  [routerLink]="['/driver/addDriver']"
-  style="
-    all: unset;
-    background-color: #eab308;
-    height: 40px;
-    width: 150px;
-    color: #ffffff;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
-  "
->
-  Add Drivers
-</button>
-<button mat-button routerLink="/rider">Rider Registration</button>
+  <button routerLink="/rider" class="rider-registration-button">
+    Rider Registration
+  </button>
 
-
-<button
-  mat-button
-  color="#EAB308"
-  style="
-    all: unset;
-    background-color: #eab308;
-    height: 40px;
-    width: 150px;
-    color: #ffffff;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
-  "
-  [routerLink]="['/schedule-ride']"
->
-  Schedule a Ride
-</button> -->
-
-<button routerLink="/driver/listDrivers">List Drivers </button>
-<button routerLink="/driver/addDriver">Add Drivers </button>
-<button routerLink="/schedule-ride">Schedule a Ride </button>
-<button routerLink="/ridersPayment">Payment </button>
+  <button routerLink="/schedule-ride" class="schedule-ride-button">
+    Schedule a Ride
+  </button>
+  <button routerLink="/ridersPayment" class="payment-button">Payment</button>
+</div>
