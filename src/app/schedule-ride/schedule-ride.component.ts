@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { GoogleMapsService } from '../googlemaps.service';
 import { ScheduleRideService } from '../schedule-ride.service';
+import { DriverService } from '../driver.service';
 
 @Component({
   selector: 'app-schedule-ride',
@@ -36,11 +37,13 @@ export class ScheduleRideComponent implements OnInit, AfterViewInit {
   mode = 'Add';
   editedRide: any = null;
   map!: google.maps.Map;
+  public drivers:any;
 
   constructor(
     private fb: FormBuilder,
     private rideService: ScheduleRideService,
-    private googleMapsService: GoogleMapsService
+    private googleMapsService: GoogleMapsService,
+    private driverService:DriverService
   ) {
     this.rideForm = this.fb.group({
       date: [''],
@@ -50,8 +53,19 @@ export class ScheduleRideComponent implements OnInit, AfterViewInit {
     });
   }
 
+  getDrivers(){
+    this.driverService.getDrivers().subscribe({
+		  
+		  next: (data:any)=> { this.drivers = data },
+		  error: (err:any) => console.error(err),
+		  complete: () =>( console.log('finished loading'))
+		});
+
+  }
+
   ngOnInit(): void {
     this.getRides();
+    this.getDrivers();
     // this.initializeMap();
   }
 
@@ -60,16 +74,6 @@ export class ScheduleRideComponent implements OnInit, AfterViewInit {
       this.initializeMap();
     }
   }
-
-  // initializeMap() {
-  //   if (this.mapContainer && this.mapContainer.nativeElement) {
-  //     this.map = this.googleMapsService.initializeMap(
-  //       this.mapContainer.nativeElement
-  //     );
-  //   } else {
-  //     console.error('Map container element not found or not initialized.');
-  //   }
-  // }
 
   initializeMap() {
     if (this.mapContainer && this.mapContainer.nativeElement) {

@@ -9,7 +9,6 @@
       <input type="time" placeholder="Time" formControlName="time" />
     </div>
 
-   
     <p>Destination</p>
     <div #mapContainer class="map-container"></div>
     <div class="form-field">
@@ -22,13 +21,21 @@
     <div class="form-field">
       <label>Driver</label>
       <select formControlName="driver">
-        <option value="driver1">Driver 1</option>
-        <option value="driver2">Driver 2</option>
+        <ng-container *ngFor="let driver of drivers; let i = index">
+          <option [value]="driver.name">{{ driver.name }}</option>
+        </ng-container>
       </select>
     </div>
 
+    <!-- {{driver.phone}} {{driver.carInfo}} (index {{i}})  -->
+
     <div class="form-field">
-      <button type="submit">Submit</button>
+      <button
+        type="submit"
+        style="background-color: #eab308; font-size: medium"
+      >
+        {{ mode }} Ride
+      </button>
     </div>
   </form>
 
@@ -38,8 +45,12 @@
       <span>{{ ride.time }}</span>
       <span>{{ ride.destination }}</span>
       <span>{{ ride.driver }}</span>
-      <button (click)="editRide(ride)">Edit</button>
-      <button (click)="deleteRide(ride)">Delete</button>
+      <button (click)="editRide(ride)" style="background-color: #22c55e">
+        Edit
+      </button>
+      <button (click)="deleteRide(ride)" style="margin-left: 10px">
+        Delete
+      </button>
     </li>
   </ul>
 </div>
