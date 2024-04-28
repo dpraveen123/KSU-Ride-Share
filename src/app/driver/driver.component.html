@@ -1,44 +1,68 @@
-<p>driver works!</p>
 
 
-
-
-    <!-- Driver Registration Component -->
-    <div class="container">
-        <h2 class="text-xl font-semibold mb-4">Driver Registration</h2>
-        <form  (ngSubmit)="onSubmit()" [formGroup]="driverComponent" >
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" placeholder="Name" formControlName="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Email" formControlName="email"required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone</label>
-                <input type="tel" id="phone" placeholder="Phone" formControlName="phone" required>
-            </div>
-            <div class="form-group">
-                <label for="car-info">Information about the car</label>
-                <textarea id="car-info" placeholder="Information about the car" formControlName="carInfo"  required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="primary-campus">Primary campus</label>
-                <select id="primary-campus" formControlName="primaryCampus" required>
-                    <option value="">Primary campus</option>
-                    <option value="kennesaw">Kennesaw</option>
-                    <option value="marietta">Marietta</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="availability">Availability</label>
-                <input type="text" id="availability" placeholder="Availability" formControlName="availability" required>
-            </div>
-            <div class="form-group">
-                <button type="submit"  >Register</button>
-            </div>
-        </form>
+<!-- Driver Registration Component -->
+<div class="container" style="width: 512px">
+  <h2 class="text-xl font-semibold mb-4">Driver Registration</h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="driverComponent">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        placeholder="Name"
+        formControlName="name"
+        required
+      />
     </div>
-
-
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="Email"
+        formControlName="email"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input
+        type="tel"
+        id="phone"
+        placeholder="Phone"
+        formControlName="phone"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="car-info">Information about the car</label>
+      <textarea
+        id="car-info"
+        placeholder="Information about the car"
+        formControlName="carInfo"
+        required
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="primary-campus">Primary campus</label>
+      <select id="primary-campus" formControlName="primaryCampus" required>
+        <option value="">Primary campus</option>
+        <option value="kennesaw">Kennesaw</option>
+        <option value="marietta">Marietta</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="availability">Availability</label>
+      <input
+        type="text"
+        id="availability"
+        placeholder="Availability"
+        formControlName="availability"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <button type="submit">Register</button>
+    </div>
+  </form>
+</div>

@@ -8,6 +8,8 @@ import { NavigationMenuComponent } from './navigation-menu/navigation-menu.compo
 import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
 import { ScheduleRideService } from './schedule-ride.service';
 import { ScheduleRideComponent } from './schedule-ride/schedule-ride.component';
+import { DriverComponent } from './driver/driver.component';
+import { DriverslistComponent } from './driverslist/driverslist.component';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +23,8 @@ import { ScheduleRideComponent } from './schedule-ride/schedule-ride.component';
     ScheduleRideComponent,
     RouterModule,
     NavigationMenuComponent,
+    DriverComponent,
+    DriverslistComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
