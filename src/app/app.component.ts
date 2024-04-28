@@ -10,6 +10,8 @@ import { ScheduleRideService } from './schedule-ride.service';
 import { ScheduleRideComponent } from './schedule-ride/schedule-ride.component';
 import { DriverComponent } from './driver/driver.component';
 import { DriverslistComponent } from './driverslist/driverslist.component';
+import { PaymentModuleComponent } from './payment-module/payment-module.component';
+import { PaymentService } from './payment.service';
 
 @Component({
   selector: 'app-root',
@@ -24,11 +26,12 @@ import { DriverslistComponent } from './driverslist/driverslist.component';
     RouterModule,
     NavigationMenuComponent,
     DriverComponent,
-    DriverslistComponent
+    DriverslistComponent,
+    PaymentModuleComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  providers: [ScheduleRideService, DriverService],
+  providers: [ScheduleRideService, DriverService,PaymentService],
 })
 export class AppComponent {
   title = 'mean-test';

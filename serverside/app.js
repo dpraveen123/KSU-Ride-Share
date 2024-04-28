@@ -196,6 +196,63 @@ app.put('/drivers/:id', (req, res, next) => {
       console.log("please provide correct id"); 
   } 
 });
+
+app.get("/ridersPayment", (req, res, next) => {
+  RiderPayment.find()
+    .then((data) => res.status(200).json(data))
+    .catch((err) => {
+      console.log("Error: ${err}");
+      res.status(500).json(err);
+    });
+});
+
+app.post("/ridersPayment", (req, res, next) => {
+const riderPayment = new RiderPayment({
+    cardNumber: req.body.cardNumber,
+    expireDate: req.body.expireDate,
+    cvv: req.body.cvv,
+    country: req.body.country,
+    zip: req.body.zip
+});
+riderPayment.save()
+    .then(() => { console.log('Success');})
+    .catch(err => {console.log('Error:' + err);});
+});
+app.put('ridersPayment/:id',(req,res,next)=>{
+  console.log("id: " + req.params.id) 
+  if (mongoose.Types.ObjectId.isValid(req.params.id)) { 
+      RiderPayment.findOneAndUpdate( 
+          {_id: req.params.id}, 
+          {$set:{ 
+            cardNumber : req.body.cardNumber, 
+            expireDate : req.body.expireDate,
+            cvv:req.body.cvv,
+            country:req.body.country,
+            zip:req.body.country
+          }}, 
+          {new:true} 
+      ) 
+      .then((rider) => { 
+          if (rider) { 
+              console.log(rider); 
+          } else { 
+              console.log("no data exist for this id"); 
+          } 
+      }) 
+      .catch((err) => { 
+          console.log(err); 
+      }); 
+  } else { 
+      console.log("please provide correct id"); 
+  }
+})
+app.delete("/ridersPayment/:id", (req, res, next) => {
+  console.log('inisde method',req)
+  RiderPayment.deleteOne({ _id: req.params.id }).then(result => {
+      console.log(result);
+      res.status(200).json("Deleted!");
+  });
+});
              
 
 
