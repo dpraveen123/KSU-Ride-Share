@@ -76,7 +76,7 @@ onSubmit(){
   if (this.mode == 'Edit')
       this._myService.updateDriver(this.id, name, email,phone,carInfo,primaryCampus,availability);
   //this._myService.addStudents(firstName, lastName);
-  this.router.navigate(['/listDrivers']);
+  this.router.navigate(['/driver/listDrivers']);
 }
 
 }
