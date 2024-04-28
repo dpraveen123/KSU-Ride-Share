@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="width: 512px">
   <h2>{{ mode }} Ride</h2>
   <form (ngSubmit)="onSubmit()" [formGroup]="rideForm">
     <div class="form-field">
@@ -9,10 +9,16 @@
       <input type="time" placeholder="Time" formControlName="time" />
     </div>
 
+   
+    <p>Destination</p>
+    <div #mapContainer class="map-container"></div>
     <div class="form-field">
-      <input type="text" placeholder="Destination" formControlName="destination" />
+      <input
+        type="text"
+        placeholder="Destination"
+        formControlName="destination"
+      />
     </div>
-
     <div class="form-field">
       <label>Driver</label>
       <select formControlName="driver">
@@ -25,26 +31,6 @@
       <button type="submit">Submit</button>
     </div>
   </form>
-  <div>
-    <div>
-      <h3>Ride for Driver 1</h3>
-      <span>Date: 2024-04-20</span>
-      <span>Time: 21:37</span>
-      <span>Destination: Kennesaw Campus</span>
-      <button>Edit</button>
-      <button>Delete</button>
-    </div>
-  
-    <div>
-      <h3>Ride for Driver 2</h3>
-      <span>Date: 2024-04-20</span>
-      <span>Time: 21:37</span>
-      <span>Destination: Kennesaw Campus</span>
-      <button>Edit</button>
-      <button>Delete</button>
-    </div>
-  </div>
-  
 
   <ul>
     <li *ngFor="let ride of rides">
