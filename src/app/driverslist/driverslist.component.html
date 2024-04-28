@@ -1,0 +1,12 @@
+
+<div style="width: 512px">
+    <h2> Registerd Drivers</h2>
+    <ul *ngFor ="let driver of drivers let i = index">
+        <li>  {{driver.name}} {{driver.phone}} {{driver.carInfo}} (index {{i}}) 
+            <button mat-button color="accent" [routerLink]="['/editDriver', driver._id]">UPDATE</button>
+            <button mat-button color="warn" (click)="onDelete(driver._id)">DELETE</button>
+         
+        </li>
+    </ul>
+</div>
+            

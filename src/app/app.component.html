@@ -1,3 +1,33 @@
-<h1>{{ formName }}</h1>
 <!-- <app-profile-editor></app-profile-editor> -->
-<app-schedule-ride></app-schedule-ride>
+<!-- <button
+  mat-button
+  color="#EAB308"
+  style="
+    all: unset;
+    background-color: #eab308;
+    height: 40px;
+    width: 150px;
+    color: #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+  "
+  [routerLink]="['/schedule-ride']"
+>
+  Schedule a Ride
+</button> -->
+<!-- <app-schedule-ride></app-schedule-ride> -->
+
+<div
+  style="
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+  "
+>
+  <h1>{{ formName }}</h1>
+  <app-navigation-menu></app-navigation-menu>
+  <router-outlet></router-outlet>
+</div>

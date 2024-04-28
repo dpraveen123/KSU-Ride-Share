@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="width: 512px">
   <h2>{{ mode }} Ride</h2>
   <form (ngSubmit)="onSubmit()" [formGroup]="rideForm">
     <div class="form-field">
@@ -9,10 +9,16 @@
       <input type="time" placeholder="Time" formControlName="time" />
     </div>
 
+   
+    <p>Destination</p>
+    <div #mapContainer class="map-container"></div>
     <div class="form-field">
-      <input type="text" placeholder="Destination" formControlName="destination" />
+      <input
+        type="text"
+        placeholder="Destination"
+        formControlName="destination"
+      />
     </div>
-
     <div class="form-field">
       <label>Driver</label>
       <select formControlName="driver">

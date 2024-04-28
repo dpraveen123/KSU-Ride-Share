@@ -59,3 +59,8 @@ ul li button {
 ul li button:hover {
   background-color: #c82333;
 }
+
+.map-container {
+  background-color: #dc3545;
+  height:100px
+}
