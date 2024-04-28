@@ -6,7 +6,7 @@ const app = express();
 const mongoose = require("mongoose");
 const Ride = require("./models/ride");
 const Driver = require("./models/driver");
-const RiderPayment=require("./models/riderPayment")
+const RiderPayment = require("./models/riderPayment");
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/KsuRideShare")
@@ -103,11 +103,9 @@ app.delete("/rides/:id", (req, res, next) => {
   });
 });
 
-
 //driverssss
 
-app.get('/drivers', (req, res, next) => {
-    
+app.get("/drivers", (req, res, next) => {
   Driver.find()
     //if data is returned, send data as a response
     .then((data) => res.status(200).json(data))
@@ -116,87 +114,87 @@ app.get('/drivers', (req, res, next) => {
       console.log("Error: ${err}");
       res.status(500).json(err);
     });
-
 });
-
-
 
 //find a student based on the id
-app.get('/drivers/:id', (req, res, next) => {
+app.get("/drivers/:id", (req, res, next) => {
   //call mongoose method findOne (MongoDB db.Students.findOne())
-  Student.findOne({_id: req.params.id}) 
-      //if data is returned, send data as a response 
-      .then(data => {
-          res.status(200).json(data)
-          console.log(data);
-      })
-      //if error, send internal server error
-      .catch(err => {
-      console.log('Error: ${err}');
+  Student.findOne({ _id: req.params.id })
+    //if data is returned, send data as a response
+    .then((data) => {
+      res.status(200).json(data);
+      console.log(data);
+    })
+    //if error, send internal server error
+    .catch((err) => {
+      console.log("Error: ${err}");
       res.status(500).json(err);
-  });
+    });
 });
-           
 
-app.post('/drivers', (req, res, next) => {
-  // create a new student variable and save request’s fields 
+app.post("/drivers", (req, res, next) => {
+  // create a new student variable and save request’s fields
   const driver = new Driver({
-      name:req.body.name,
-      email:req.body.email,
-      phone:req.body.phone,
-      carInfo:req.body.carInfo,
-      primaryCampus:req.body.primaryCampus,
-      availability:req.body.availability
-      
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    carInfo: req.body.carInfo,
+    primaryCampus: req.body.primaryCampus,
+    availability: req.body.availability,
   });
-  //send the document to the database 
-  driver.save()
-      //in case of success
-      .then(() => { console.log('Success');})
-      //if error
-      .catch(err => {console.log('Error:' + err);});
-      
+  //send the document to the database
+  driver
+    .save()
+    //in case of success
+    .then(() => {
+      console.log("Success");
+    })
+    //if error
+    .catch((err) => {
+      console.log("Error:" + err);
+    });
 });
-
 
 app.delete("/drivers/:id", (req, res, next) => {
-  Driver.deleteOne({ _id: req.params.id }).then(result => {
-      console.log(result);
-      res.status(200).json("Deleted!");
+  Driver.deleteOne({ _id: req.params.id }).then((result) => {
+    console.log(result);
+    res.status(200).json("Deleted!");
   });
 });
 
-
-app.put('/drivers/:id', (req, res, next) => { 
-  console.log("id: " + req.params.id) 
-  // check that the parameter id is valid 
-  if (mongoose.Types.ObjectId.isValid(req.params.id)) { 
-      //find a document and set new first and last names 
-      Driver.findOneAndUpdate( 
-          {_id: req.params.id}, 
-          {$set:{ 
-              name : req.body.name, 
-              email:req.body.email,
-              phone : req.body.phone,
-              carInfo:req.body.carInfo,
-              primaryCampus:req.body.primaryCampus,
-              availability:req.body.availability
-          }}, 
-          {new:true} 
-      ) 
-      .then((driver) => { 
-          if (driver) { //what was updated 
-              console.log(driver); 
-          } else { 
-              console.log("no data exist for this id"); 
-          } 
-      }) 
-      .catch((err) => { 
-          console.log(err); 
-      }); 
-  } else { 
-      console.log("please provide correct id"); 
-  } 
+app.put("/drivers/:id", (req, res, next) => {
+  console.log("id: " + req.params.id);
+  // check that the parameter id is valid
+  if (mongoose.Types.ObjectId.isValid(req.params.id)) {
+    //find a document and set new first and last names
+    Driver.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $set: {
+          name: req.body.name,
+          email: req.body.email,
+          phone: req.body.phone,
+          carInfo: req.body.carInfo,
+          primaryCampus: req.body.primaryCampus,
+          availability: req.body.availability,
+        },
+      },
+      { new: true }
+    )
+      .then((driver) => {
+        if (driver) {
+          //what was updated
+          console.log(driver);
+        } else {
+          console.log("no data exist for this id");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    console.log("please provide correct id");
+  }
 });
 
 app.get("/ridersPayment", (req, res, next) => {
@@ -209,54 +207,60 @@ app.get("/ridersPayment", (req, res, next) => {
 });
 
 app.post("/ridersPayment", (req, res, next) => {
-const riderPayment = new RiderPayment({
+  const riderPayment = new RiderPayment({
     cardNumber: req.body.cardNumber,
     expireDate: req.body.expireDate,
     cvv: req.body.cvv,
     country: req.body.country,
-    zip: req.body.zip
+    zip: req.body.zip,
+  });
+  riderPayment
+    .save()
+    .then(() => {
+      console.log("Success");
+    })
+    .catch((err) => {
+      console.log("Error:" + err);
+    });
 });
-riderPayment.save()
-    .then(() => { console.log('Success');})
-    .catch(err => {console.log('Error:' + err);});
-});
-app.put('ridersPayment/:id',(req,res,next)=>{
-  console.log("id: " + req.params.id) 
-  if (mongoose.Types.ObjectId.isValid(req.params.id)) { 
-      RiderPayment.findOneAndUpdate( 
-          {_id: '662ec984413ab3a039fb84bb'}, 
-          {$set:{ 
-            cardNumber : req.body.cardNumber, 
-            expireDate : req.body.expireDate,
-            cvv:req.body.cvv,
-            country:req.body.country,
-            zip:req.body.country
-          }}, 
-          {new:true} 
-      ) 
-      .then((rider) => { 
-          if (rider) { 
-              console.log(rider); 
-          } else { 
-              console.log("no data exist for this id"); 
-          } 
-      }) 
-      .catch((err) => { 
-          console.log(err); 
-      }); 
-  } else { 
-      console.log("please provide correct id"); 
+
+app.put("/ridersPayment/:id", (req, res, next) => {
+  console.log("id: " + req.params.id);
+  if (req.params.id) {
+    RiderPayment.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $set: {
+          cardNumber: req.body.cardNumber,
+          expireDate: req.body.expireDate,
+          cvv: req.body.cvv,
+          country: req.body.country,
+          zip: req.body.zip,
+        },
+      },
+      { new: true }
+    )
+      .then((rider) => {
+        if (rider) {
+          console.log(rider);
+        } else {
+          console.log("no data exist for this id");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    console.log("please provide correct id");
   }
-})
+});
+
 app.delete("/ridersPayment/:id", (req, res, next) => {
-  console.log('inisde method',req)
-  RiderPayment.deleteOne({ _id: req.params.id }).then(result => {
-      console.log(result);
-      res.status(200).json("Deleted!");
+  console.log("inisde method", req);
+  RiderPayment.deleteOne({ _id: req.params.id }).then((result) => {
+    console.log(result);
+    res.status(200).json("Deleted!");
   });
 });
-             
-
-
 
 module.exports = app;
