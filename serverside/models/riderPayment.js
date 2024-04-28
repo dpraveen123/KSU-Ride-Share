@@ -13,5 +13,5 @@ const riderPaymentSchema = new mongoose.Schema({
 //use the blueprint to create the model 
 //Parameters: (model_name, schema_to_use, collection_name)
 //module.exports is used to allow external access to the model  
-module.exports = mongoose.model('RiderPayment', riderPaymentSchema,'RideShare');
+module.exports = mongoose.model('RiderPayment', riderPaymentSchema,'RidePayment');
 //note capital S in the collection name

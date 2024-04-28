@@ -20,7 +20,7 @@ export class PaymentModuleComponent implements OnInit {
   public mode = 'Add';
   private id: any; //ride payment ID
   
-  public ridersPayment: any;
+  ridersPayment: any;
   constructor(private fb: FormBuilder, private paymentService: PaymentService,public route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -87,21 +87,26 @@ this.ridersPayment=data
     }
   }
   onSubmit() {
-   
+    
     if (this.paymentForm.valid) {
-      console.log(this.paymentForm.value);
       const riderPaymentData=this.paymentForm.value
 
       if (this.mode == 'Add')
-        this.paymentService.addRidersPayment(riderPaymentData).subscribe(()=>{
-      this.getRidersPayment()})
-      this.reserForm()
-        
-    if (this.mode == 'Edit'&&this.editPayment)
+        {
+          this.paymentService.addRidersPayment(riderPaymentData).subscribe(()=>{
+            this.getRidersPayment()})
+            this.resetForm()
+        }
+       
+      console.log(this.mode,this.editPayment,"bgsfgdjhksahzb")  
+    if (this.mode == 'Edit'&& this.editPayment)
       {
+        
+        console.log(this.paymentForm.value);
         const riderPaymentId=this.editPayment._id
-        this.paymentService.editRidersPayment(riderPaymentId,this.editPayment).subscribe(()=>{
-
+        this.paymentService.editRidersPayment(riderPaymentId,this.paymentForm.value).subscribe(()=>{
+this.getRidersPayment()
+this.resetForm()
         })
       }
     //     this.paymentService.editRidersPayment(String(id), cardNumber, expireDate,cvv,country,zip );
@@ -139,6 +144,9 @@ this.paymentForm.patchValue({
   country:rider.country,
   zip:rider.zip
 })
+console.log(rider,this.mode,this.editPayment,this.paymentForm,"rider data")
+this.toggleProfileCard()
+// this.onSubmit()
   }
 
   deletePaymentDetails(id: string) {
@@ -148,7 +156,7 @@ this.paymentForm.patchValue({
     });
     // Implement delete functionality here
   }
-  reserForm()
+  resetForm()
   {
     this.mode="Add"
     this.editPayment=null

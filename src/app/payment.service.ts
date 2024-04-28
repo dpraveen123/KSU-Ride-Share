@@ -20,9 +20,9 @@ export class PaymentService {
     deleteRiderpayment(id: string) {
        return this.http.delete(`http://localhost:8000/ridersPayment/${id}`)
         }
-    editRidersPayment(riderPaymentId:number,ridersPaymentData:any)
+    editRidersPayment(riderPaymentId:any,ridersPaymentData:any)
     {
-        return this.http.put(`http://localhost:8000/rides/${riderPaymentId}`, ridersPaymentData);
+        return this.http.put(`http://localhost:8000/ridersPayment/${riderPaymentId}`, ridersPaymentData);
     }
 }
  

@@ -5,6 +5,8 @@ const app = express();
 
 const mongoose = require("mongoose");
 const Ride = require("./models/ride");
+const Driver = require("./models/driver");
+const RiderPayment=require("./models/riderPayment")
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/KsuRideShare")
@@ -222,7 +224,7 @@ app.put('ridersPayment/:id',(req,res,next)=>{
   console.log("id: " + req.params.id) 
   if (mongoose.Types.ObjectId.isValid(req.params.id)) { 
       RiderPayment.findOneAndUpdate( 
-          {_id: req.params.id}, 
+          {_id: '662ec984413ab3a039fb84bb'}, 
           {$set:{ 
             cardNumber : req.body.cardNumber, 
             expireDate : req.body.expireDate,
