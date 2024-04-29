@@ -1,0 +1,46 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="riderComponent">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+      type="text"
+      id="name"
+      placeholder="Name"
+      formControlName="name"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      placeholder="Email"
+      formControlName="email"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input
+      type="tel"
+      id="phone"
+      placeholder="Phone"
+      formControlName="phone"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <button type="submit">Register</button>
+  </div>
+  </form>
+
+  <div style="width: 512px">
+    <h2> Registerd Riders</h2>
+    <ul *ngFor ="let driver of riders let i = index">
+        <li> {{i+1}}.{{driver.name}} - {{driver.phone}}  
+            <button mat-button color="accent" (click)="onSubmit" >UPDATE</button>
+            <button mat-button color="warn" (click)="onDelete(driver._id)">DELETE</button>
+         
+        </li>
+    </ul>
+</div>

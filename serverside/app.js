@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const Ride = require("./models/ride");
 const Driver = require("./models/driver");
 const RiderPayment = require("./models/riderPayment");
+const RiderRegistration = require("./models/riderRegistration");
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/KsuRideShare")
@@ -196,6 +197,96 @@ app.put("/drivers/:id", (req, res, next) => {
     console.log("please provide correct id");
   }
 });
+
+//ridere
+
+app.get("/riders", (req, res, next) => {
+  RiderRegistration.find()
+    //if data is returned, send data as a response
+    .then((data) => res.status(200).json(data))
+    //if error, send internal server error
+    .catch((err) => {
+      console.log("Error: ${err}");
+      res.status(500).json(err);
+    });
+});
+
+//find a student based on the id
+app.get("/riders/:id", (req, res, next) => {
+  //call mongoose method findOne (MongoDB db.Students.findOne())
+  RiderRegistration.findOne({ _id: req.params.id })
+    //if data is returned, send data as a response
+    .then((data) => {
+      res.status(200).json(data);
+      console.log(data);
+    })
+    //if error, send internal server error
+    .catch((err) => {
+      console.log("Error: ${err}");
+      res.status(500).json(err);
+    });
+});
+
+app.post("/riders", (req, res, next) => {
+  // create a new student variable and save request’s fields
+  const driver = new RiderRegistration({
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+  });
+  //send the document to the database
+  driver
+    .save()
+    //in case of success
+    .then(() => {
+      console.log("Success");
+    })
+    //if error
+    .catch((err) => {
+      console.log("Error:" + err);
+    });
+});
+
+app.delete("/riders/:id", (req, res, next) => {
+  RiderRegistration.deleteOne({ _id: req.params.id }).then((result) => {
+    console.log(result);
+    res.status(200).json("Deleted!");
+  });
+});
+
+app.put("/riders/:id", (req, res, next) => {
+  console.log("id: " + req.params.id);
+  // check that the parameter id is valid
+  if (mongoose.Types.ObjectId.isValid(req.params.id)) {
+    //find a document and set new first and last names
+    RiderRegistration.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $set: {
+          name: req.body.name,
+          email: req.body.email,
+          phone: req.body.phone,
+        },
+      },
+      { new: true }
+    )
+      .then((driver) => {
+        if (driver) {
+          //what was updated
+          console.log(driver);
+        } else {
+          console.log("no data exist for this id");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    console.log("please provide correct id");
+  }
+});
+
+//payments
 
 app.get("/ridersPayment", (req, res, next) => {
   RiderPayment.find()

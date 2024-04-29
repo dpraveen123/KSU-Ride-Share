@@ -31,7 +31,5 @@ export class DriverslistComponent implements OnInit {
   }
   onDelete(driverId: string) {
     this._myService.deleteDriver(driverId);
-    
-
 }
 }

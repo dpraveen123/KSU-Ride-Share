@@ -2,17 +2,16 @@ import { Routes } from '@angular/router';
 import { DriverComponent } from './driver/driver.component';
 import { DriverslistComponent } from './driverslist/driverslist.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ScheduleRideComponent } from './schedule-ride/schedule-ride.component';
-import { AppComponent } from './app.component';
 import { PaymentModuleComponent } from './payment-module/payment-module.component';
+import { RiderRegistrationComponent } from './rider-registration/rider-registration.component';
+import { ScheduleRideComponent } from './schedule-ride/schedule-ride.component';
 
 export const routes: Routes = [
   // {
   //   path: '', //default component to display
   //   component: AppComponent,
   // },
-  
- 
+
   {
     path: 'driver', //default component to display
     component: DriverslistComponent,
@@ -31,11 +30,15 @@ export const routes: Routes = [
   },
   {
     path: 'schedule-ride', //when students added
-    component: ScheduleRideComponent
+    component: ScheduleRideComponent,
   },
   {
-    path:'ridersPayment',
-    component:PaymentModuleComponent,
+    path: 'rider', //when students added
+    component: RiderRegistrationComponent,
+  },
+  {
+    path: 'ridersPayment',
+    component: PaymentModuleComponent,
   },
   {
     path: '**', //when path cannot be found, keep this at the bottom
